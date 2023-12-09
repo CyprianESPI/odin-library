@@ -52,6 +52,7 @@ function createBookElem(book) {
         readCb.checked = true;
     readCb.addEventListener("click", () => {
         book.IsRead = readCb.checked;
+        UpdateLibrary();
     });
     elem.appendChild(readCb);
     // Delete button
@@ -69,6 +70,7 @@ function UpdateLibrary() {
     const library = document.getElementById("library");
 
     // Remove previous content
+    document.getElementById("books").innerText = "";
     while (library.firstChild) {
         library.firstChild.remove()
     }
@@ -76,7 +78,14 @@ function UpdateLibrary() {
     // Fill the library
     for (let index = 0; index < BOOKS.length; index++) {
         library.appendChild(createBookElem(BOOKS[index]));
+        // Update books count
+        if (BOOKS[index].IsRead)
+            document.getElementById("books").innerText += "📖";
+        else
+            document.getElementById("books").innerText += "📘";
     }
+
+
 
 }
 
