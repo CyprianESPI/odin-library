@@ -31,8 +31,12 @@
         <!-- A modal dialog containing a form -->
         <dialog>
             <form>
-                <div>
+                <h2>📘📖</h2>
+                <div class="inputs">
                     <!-- Do not use required field as it messes up the JS -->
+                    <label for="read">Read</label>
+                    <input type="checkbox" id="read" name="read" />
+
                     <label for="title">Title</label>
                     <input type="text" id="title" name="title" />
 
@@ -41,11 +45,8 @@
 
                     <label for="pages">Pages</label>
                     <input type="number" id="pages" name="pages" />
-
-                    <label for="read">Read</label>
-                    <input type="checkbox" id="read" name="read" />
                 </div>
-                <div>
+                <div class="buttons">
                     <button value="cancel" formmethod="dialog" class="material-symbols-outlined">close</button>
                     <button id="dialogConfirm" value="default" class="material-symbols-outlined">check</button>
                 </div>
