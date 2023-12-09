@@ -6,3 +6,8 @@
 }
 
 /*border: 2px solid red;*/
+
+body {
+    display: block;
+    text-align: center;
+}
