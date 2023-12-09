@@ -1,4 +1,5 @@
 let BOOKS = []
+let NEW_BOOK = new Book("", "", "");
 
 function Book(title, author, pages) {
     this.Title = title;
@@ -6,6 +7,10 @@ function Book(title, author, pages) {
     this.Pages = pages;
     this.ISBN = "";
     this.IsRead = false;
+}
+
+function IsValidBook(book) {
+    return book.Title !== "" && book.Author !== "" && book.Pages !== "";
 }
 
 function RemoveBook(book) {
@@ -58,23 +63,55 @@ UpdateLibrary();
 const showButton = document.getElementById("dialogShow");
 const confirmBtn = document.getElementById("dialogConfirm");
 const dialog = document.querySelector("dialog");
+const form = document.querySelector("form");
+
+const title = document.getElementById("title");
+const author = document.getElementById("author");
+const pages = document.getElementById("pages");
+
+// Form inputs
+title.addEventListener("input", () => {
+    NEW_BOOK.Title = title.value;
+    console.log(NEW_BOOK);
+    confirmBtn.disabled = !IsValidBook(NEW_BOOK);
+})
+
+author.addEventListener("input", () => {
+    NEW_BOOK.Author = author.value;
+    console.log(NEW_BOOK);
+    confirmBtn.disabled = !IsValidBook(NEW_BOOK);
+})
+
+pages.addEventListener("input", () => {
+    NEW_BOOK.Pages = pages.value;
+    console.log(NEW_BOOK);
+    confirmBtn.disabled = !IsValidBook(NEW_BOOK);
+})
 
 // "Show the dialog" button opens the dialog modally
 showButton.addEventListener("click", () => {
     dialog.showModal();
+    NEW_BOOK = new Book("", "", "");
+    title.value = "";
+    author.value = "";
+    pages.value = "";
+    confirmBtn.disabled = true;
 });
 
 // "Cancel" button closes the dialog without submitting
 // because of [formmethod="dialog"], triggering a close event.
-dialog.addEventListener("close", () => {
-    //dialog.close();
+dialog.addEventListener("close", (event) => {
+    event.preventDefault();
+    dialog.close();
+    // Do nothing here
 });
 
 // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
 confirmBtn.addEventListener("click", (event) => {
-    event.preventDefault(); // We don't want to submit this fake form
+    // Prevent submit
+    event.preventDefault();
 
-    console.log(event);
+    console.log(NEW_BOOK);
+
     dialog.close(); // Have to send the select box value here.
-
 });
