@@ -1,12 +1,12 @@
 let BOOKS = []
 let NEW_BOOK = new Book("", "", "");
 
-function Book(title, author, pages) {
+function Book(title, author, pages, isRead) {
     this.Title = title;
     this.Author = author;
     this.Pages = pages;
     this.ISBN = "";
-    this.IsRead = false;
+    this.IsRead = isRead;
 }
 
 function IsValidBook(book) {
@@ -28,10 +28,10 @@ function AddBook(book) {
 }
 
 
-AddBook(new Book("lotr 1", "jrr tolk", "a lot"));
-AddBook(new Book("lotr 2", "jrr tolk", "a lot"));
-AddBook(new Book("lotr 3", "jrr tolk", "a lot"));
-AddBook(new Book("lotr 4?", "jrr tolk", "a lot"));
+AddBook(new Book("lotr 1", "jrr tolk", "a lot", true));
+AddBook(new Book("lotr 2", "jrr tolk", "a lot", false));
+AddBook(new Book("lotr 3", "jrr tolk", "a lot", true));
+AddBook(new Book("lotr 4?", "jrr tolk", "a lot", false));
 
 console.log(BOOKS);
 
@@ -45,6 +45,15 @@ function createBookElem(book) {
     const p = document.createElement("p");
     p.innerText = book.Title + " - " + book.Author + " - " + book.Pages;
     elem.appendChild(p);
+    // Read checkbox
+    const readCb = document.createElement("input");
+    readCb.type = "checkbox";
+    if (book.IsRead)
+        readCb.checked = true;
+    readCb.addEventListener("click", () => {
+        book.IsRead = readCb.checked;
+    });
+    elem.appendChild(readCb);
     // Delete button
     const btn = document.createElement("button");
     btn.innerText = "Delete";
@@ -80,6 +89,7 @@ const form = document.querySelector("form");
 const title = document.getElementById("title");
 const author = document.getElementById("author");
 const pages = document.getElementById("pages");
+const read = document.getElementById("read");
 
 // Form inputs
 title.addEventListener("input", () => {
@@ -107,6 +117,7 @@ showButton.addEventListener("click", () => {
     title.value = "";
     author.value = "";
     pages.value = "";
+    read.checked = false;
     confirmBtn.disabled = true;
 });
 
@@ -122,7 +133,7 @@ dialog.addEventListener("close", (event) => {
 confirmBtn.addEventListener("click", (event) => {
     // Prevent submit
     event.preventDefault();
-
+    NEW_BOOK.IsRead = read.checked;
     console.log(NEW_BOOK);
     AddBook(NEW_BOOK);
 
