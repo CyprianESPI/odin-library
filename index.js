@@ -40,8 +40,18 @@ RemoveBook(BOOKS[3]);
 console.log(BOOKS);
 
 function createBookElem(book) {
-    var elem = document.createElement("p");
-    elem.innerText = book.Title + " - " + book.Author + " - " + book.Pages;
+    var elem = document.createElement("div");
+    // Book info
+    const p = document.createElement("p");
+    p.innerText = book.Title + " - " + book.Author + " - " + book.Pages;
+    elem.appendChild(p);
+    // Delete button
+    const btn = document.createElement("button");
+    btn.innerText = "Delete";
+    btn.addEventListener("click", () => {
+        RemoveBook(book);
+    });
+    elem.appendChild(btn);
     return elem;
 }
 
