@@ -27,16 +27,14 @@ function AddBook(book) {
     UpdateLibrary();
 }
 
-
-AddBook(new Book("lotr 1", "jrr tolk", "a lot", true));
-AddBook(new Book("lotr 2", "jrr tolk", "a lot", false));
-AddBook(new Book("lotr 3", "jrr tolk", "a lot", true));
+/* Main - fill up library + test removal */
+AddBook(new Book("The Fellowship of the Ring", "J. R. R. Tolkien", "423", true));
+AddBook(new Book("The Two Towers", "J. R. R. Tolkien", "352", false));
+AddBook(new Book("The Return of the King", "J. R. R. Tolkien", "416 ", false));
 AddBook(new Book("lotr 4?", "jrr tolk", "a lot", false));
-
 console.log(BOOKS);
 
 RemoveBook(BOOKS[3]);
-
 console.log(BOOKS);
 
 function createBookElem(book) {
