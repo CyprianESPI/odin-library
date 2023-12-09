@@ -15,10 +15,15 @@
         <h1>Library</h1>
     </div>
     <main>
-        <button id="dialog-show">NEW BOOK</button>
+        <button id="dialogShow">NEW BOOK</button>
+        <!-- A modal dialog containing a form -->
         <dialog>
-            <button id="dialog-close" autofocus>Close</button>
-            <p>This modal dialog has a groovy backdrop!</p>
+            <form>
+                <div>
+                    <button value="cancel" formmethod="dialog">Cancel</button>
+                    <button id="dialogConfirm" value="default">Confirm</button>
+                </div>
+            </form>
         </dialog>
         <div id="library">
 

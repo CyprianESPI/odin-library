@@ -55,8 +55,8 @@ function UpdateLibrary() {
 
 UpdateLibrary();
 
-const showButton = document.getElementById("dialog-show");
-const closeButton = document.getElementById("dialog-close");
+const showButton = document.getElementById("dialogShow");
+const confirmBtn = document.getElementById("dialogConfirm");
 const dialog = document.querySelector("dialog");
 
 // "Show the dialog" button opens the dialog modally
@@ -64,7 +64,17 @@ showButton.addEventListener("click", () => {
     dialog.showModal();
 });
 
-// "Close" button closes the dialog
-closeButton.addEventListener("click", () => {
-    dialog.close();
+// "Cancel" button closes the dialog without submitting
+// because of [formmethod="dialog"], triggering a close event.
+dialog.addEventListener("close", () => {
+    //dialog.close();
+});
+
+// Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
+confirmBtn.addEventListener("click", (event) => {
+    event.preventDefault(); // We don't want to submit this fake form
+
+    console.log(event);
+    dialog.close(); // Have to send the select box value here.
+
 });
