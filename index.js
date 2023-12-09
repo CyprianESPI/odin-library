@@ -54,3 +54,17 @@ function UpdateLibrary() {
 }
 
 UpdateLibrary();
+
+const showButton = document.getElementById("dialog-show");
+const closeButton = document.getElementById("dialog-close");
+const dialog = document.querySelector("dialog");
+
+// "Show the dialog" button opens the dialog modally
+showButton.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+// "Close" button closes the dialog
+closeButton.addEventListener("click", () => {
+    dialog.close();
+});
