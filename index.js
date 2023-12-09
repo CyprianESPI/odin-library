@@ -75,6 +75,8 @@ function createBookElem(book) {
     btn.addEventListener("click", () => {
         RemoveBook(book);
     });
+    // https://stackoverflow.com/questions/6632340/place-a-button-right-aligned
+    btn.style.float = "right";
     elem.appendChild(btn);
     return elem;
 }
