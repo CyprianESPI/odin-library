@@ -19,10 +19,12 @@ function RemoveBook(book) {
     if (index > -1) { // only splice array when item is found
         BOOKS.splice(index, 1); // 2nd parameter means remove one item only
     }
+    UpdateLibrary();
 }
 
 function AddBook(book) {
     BOOKS.push(book);
+    UpdateLibrary();
 }
 
 
@@ -112,6 +114,7 @@ confirmBtn.addEventListener("click", (event) => {
     event.preventDefault();
 
     console.log(NEW_BOOK);
+    AddBook(NEW_BOOK);
 
     dialog.close(); // Have to send the select box value here.
 });
