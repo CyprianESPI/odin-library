@@ -29,3 +29,26 @@ console.log(BOOKS);
 RemoveBook(BOOKS[3]);
 
 console.log(BOOKS);
+
+function createBookElem(book) {
+    var elem = document.createElement("p");
+    elem.innerText = book.Title + " - " + book.Author + " - " + book.Pages;
+    return elem;
+}
+
+function UpdateLibrary() {
+    const library = document.getElementById("library");
+
+    // Remove previous content
+    while (library.firstChild) {
+        library.firstChild.remove()
+    }
+
+    // Fill the library
+    for (let index = 0; index < BOOKS.length; index++) {
+        library.appendChild(createBookElem(BOOKS[index]));
+    }
+
+}
+
+UpdateLibrary();
