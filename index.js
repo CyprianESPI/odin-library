@@ -10,8 +10,10 @@ function Book(title, author, pages) {
 
 function RemoveBook(book) {
     // There is no Array.Remove()
-    // Filter method to create a new array without the element
-    BOOKS = BOOKS.filter(item => item !== book)
+    const index = BOOKS.indexOf(book);
+    if (index > -1) { // only splice array when item is found
+        BOOKS.splice(index, 1); // 2nd parameter means remove one item only
+    }
 }
 
 function AddBook(book) {
