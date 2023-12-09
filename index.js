@@ -56,7 +56,8 @@ function createBookElem(book) {
     elem.appendChild(readCb);
     // Delete button
     const btn = document.createElement("button");
-    btn.innerText = "Delete";
+    btn.className = "material-symbols-outlined";
+    btn.innerText = "delete";
     btn.addEventListener("click", () => {
         RemoveBook(book);
     });
