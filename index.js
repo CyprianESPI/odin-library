@@ -41,11 +41,14 @@ console.log(BOOKS);
 
 function createBookElem(book) {
     var elem = document.createElement("div");
-    // Book info
-    const p = document.createElement("p");
-    p.innerText = book.Title + " - " + book.Author + " - " + book.Pages;
-    elem.appendChild(p);
+    elem.className = "book";
+
     // Read checkbox
+    const h2 = document.createElement("h2");
+    if (book.IsRead)
+        h2.innerText = "📖";
+    else
+        h2.innerText = "📘";
     const readCb = document.createElement("input");
     readCb.type = "checkbox";
     if (book.IsRead)
@@ -54,7 +57,19 @@ function createBookElem(book) {
         book.IsRead = readCb.checked;
         UpdateLibrary();
     });
-    elem.appendChild(readCb);
+    h2.appendChild(readCb)
+    elem.appendChild(h2);
+    // Book info
+    const h3 = document.createElement("h2");
+    h3.innerText = book.Title;
+    elem.appendChild(h3);
+    const h4 = document.createElement("h3");
+    h4.innerText = "by " + book.Author;
+    elem.appendChild(h4);
+    const h5 = document.createElement("h4");
+    h5.innerText = book.Pages + " pages";
+    elem.appendChild(h5);
+
     // Delete button
     const btn = document.createElement("button");
     btn.className = "material-symbols-outlined";
@@ -84,9 +99,6 @@ function UpdateLibrary() {
         else
             document.getElementById("books").innerText += "📘";
     }
-
-
-
 }
 
 UpdateLibrary();
